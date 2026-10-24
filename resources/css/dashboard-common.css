@@ -1,0 +1,716 @@
+/* Shared dashboard visual system: loaded after each dashboard-specific stylesheet. */
+:root {
+    --dashboard-navy: #1e293b;
+    --dashboard-navy-dark: #0f172a;
+    --dashboard-blue: #2563eb;
+    --dashboard-surface: #ffffff;
+    --dashboard-muted: #64748b;
+    --dashboard-border: #e2e8f0;
+}
+
+/* Shared technician dashboard workspace: used by every dashboard role. */
+body.dashboard-layout .dashboard.technician-dashboard {
+    display: flex;
+    min-height: calc(100vh - 70px);
+}
+
+body.dashboard-layout .dashboard.technician-dashboard > .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 30;
+    width: 250px;
+    height: 100vh;
+    padding: 24px 14px;
+    overflow-y: auto;
+    background: linear-gradient(180deg, #0f172a 0%, #172554 100%);
+    color: #fff;
+}
+
+body.dashboard-layout .dashboard.technician-dashboard .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+    padding: 0 10px 20px;
+    background: transparent;
+}
+
+body.dashboard-layout .dashboard.technician-dashboard .logo i { color: #38bdf8; font-size: 22px; }
+body.dashboard-layout .dashboard.technician-dashboard .logo h2 { margin: 0; font-size: 17px; letter-spacing: -.02em; }
+body.dashboard-layout .dashboard.technician-dashboard .menu { margin: 0; padding: 0; list-style: none; }
+body.dashboard-layout .dashboard.technician-dashboard .menu li { margin: 4px 0; padding: 0; border: 0; border-radius: 10px; cursor: pointer; transition: background .18s ease; }
+body.dashboard-layout .dashboard.technician-dashboard .menu li:hover,
+body.dashboard-layout .dashboard.technician-dashboard .menu li.active { background: rgba(255, 255, 255, .12); transform: none; box-shadow: none; }
+body.dashboard-layout .dashboard.technician-dashboard .menu a { display: flex; align-items: center; gap: 11px; padding: 11px 12px; color: #cbd5e1; font-size: 14px; font-weight: 400; text-decoration: none; cursor: pointer; }
+body.dashboard-layout .dashboard.technician-dashboard .menu li.active a,
+body.dashboard-layout .dashboard.technician-dashboard .menu a:hover { color: #fff; font-weight: 700; }
+
+body.dashboard-layout .dashboard.technician-dashboard > .main-content {
+    flex: 1;
+    min-width: 0;
+    margin-left: 250px;
+    padding: clamp(24px, 4vw, 48px);
+    overflow: visible;
+    background: #f1f5f9;
+}
+
+body.dashboard-layout .dashboard.technician-dashboard > .main-content > * { width: min(1180px, 100%); margin-right: auto; margin-left: auto; }
+body.dashboard-layout .dashboard.technician-dashboard .cards-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 18px; margin: 0 0 28px; }
+body.dashboard-layout .dashboard.technician-dashboard .card {
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    background: #fff;
+    box-shadow: 0 5px 18px rgba(15, 23, 42, .05);
+    cursor: pointer;
+    transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+body.dashboard-layout .dashboard.technician-dashboard .card:hover { transform: translateY(-3px); border-color: #bfdbfe; box-shadow: 0 12px 25px rgba(15, 23, 42, .09); }
+body.dashboard-layout .dashboard.technician-dashboard .card h2 { margin: 0 0 5px; color: #0f172a; font-size: 29px; }
+body.dashboard-layout .dashboard.technician-dashboard .card h3 { margin: 0 0 8px; color: #0f172a; font-size: 17px; }
+body.dashboard-layout .dashboard.technician-dashboard .card p { margin: 0; color: #64748b; font-size: 13px; line-height: 1.65; }
+body.dashboard-layout .dashboard.technician-dashboard .card .icon { display: grid; width: 48px; height: 48px; flex: 0 0 48px; place-items: center; border-radius: 13px; color: #fff; font-size: 20px; }
+body.dashboard-layout .dashboard.technician-dashboard .labs .icon { background: #2563eb; }
+body.dashboard-layout .dashboard.technician-dashboard .devices .icon { background: #059669; }
+body.dashboard-layout .dashboard.technician-dashboard .reports .icon { background: #ea580c; }
+body.dashboard-layout .dashboard.technician-dashboard .generate .icon,
+body.dashboard-layout .dashboard.technician-dashboard .report-form .icon { background: #7c3aed; }
+body.dashboard-layout .dashboard.technician-dashboard .users .icon { background: #2563eb; }
+body.dashboard-layout .dashboard.technician-dashboard .technician .icon { background: #059669; }
+body.dashboard-layout .dashboard.technician-dashboard .faculty .icon { background: #7c3aed; }
+
+body.dashboard-layout .dashboard.technician-dashboard .panel-content,
+body.dashboard-layout .dashboard.technician-dashboard .section.panel,
+body.dashboard-layout .dashboard.technician-dashboard .lab-detail-card,
+body.dashboard-layout .dashboard.technician-dashboard .section-block,
+body.dashboard-layout .dashboard.technician-dashboard .lab-detail-content {
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    background: #fff;
+    box-shadow: 0 5px 18px rgba(15, 23, 42, .05);
+}
+body.dashboard-layout .dashboard.technician-dashboard .panel-content,
+body.dashboard-layout .dashboard.technician-dashboard .section.panel { padding: clamp(18px, 3vw, 28px); }
+body.dashboard-layout .dashboard.technician-dashboard .panel-content { display: none; }
+body.dashboard-layout .dashboard.technician-dashboard > .main-content.has-selected-panel .panel-content { display: block; }
+body.dashboard-layout .dashboard.technician-dashboard .panel-section > h2,
+body.dashboard-layout .dashboard.technician-dashboard .section.panel > h2 { margin: 0 0 16px; color: #0f172a; font-size: 22px; }
+body.dashboard-layout .dashboard.technician-dashboard .lab-card { align-items: flex-start; }
+body.dashboard-layout .dashboard.technician-dashboard .lab-card.active { border-color: #2563eb; background: #eff6ff; }
+body.dashboard-layout .dashboard.technician-dashboard .lab-detail-card { padding: 20px; background: #f8fafc; }
+body.dashboard-layout .dashboard.technician-dashboard .lab-detail-card > h3 { margin: 0 0 18px; }
+body.dashboard-layout .dashboard.technician-dashboard .lab-detail-content,
+body.dashboard-layout .dashboard.technician-dashboard .section-block { padding: 20px; }
+body.dashboard-layout .dashboard.technician-dashboard .section-block h4 { margin: 0 0 16px; color: #0f172a; font-size: 17px; }
+
+body.dashboard-layout .dashboard.technician-dashboard table { width: 100%; margin-top: 16px; border-collapse: collapse; font-size: 14px; }
+body.dashboard-layout .dashboard.technician-dashboard th,
+body.dashboard-layout .dashboard.technician-dashboard td { padding: 13px 14px; border-bottom: 1px solid #e2e8f0; text-align: left; vertical-align: middle; }
+body.dashboard-layout .dashboard.technician-dashboard th { background: #f8fafc; color: #475569; font-size: 12px; font-weight: 800; letter-spacing: .03em; text-transform: uppercase; }
+body.dashboard-layout .dashboard.technician-dashboard tbody tr:hover { background: #f8fafc; }
+
+/* Student tables use the same device-table treatment without a second panel behind them. */
+body.student-dashboard.dashboard-layout .dashboard.technician-dashboard table { width: 100%; margin-top: 16px; border-collapse: collapse; font-size: 14px; }
+body.student-dashboard.dashboard-layout .dashboard.technician-dashboard th,
+body.student-dashboard.dashboard-layout .dashboard.technician-dashboard td { padding: 13px 14px; border-bottom: 1px solid #e2e8f0; border-left: 0; border-right: 0; text-align: left; vertical-align: middle; }
+body.student-dashboard.dashboard-layout .dashboard.technician-dashboard th { background: #f8fafc; color: #475569; font-size: 12px; font-weight: 800; letter-spacing: .03em; text-transform: uppercase; }
+body.student-dashboard.dashboard-layout .dashboard.technician-dashboard tbody tr:hover { background: #f8fafc; }
+
+@media (max-width: 900px) {
+    body.dashboard-layout .dashboard.technician-dashboard { flex-direction: column; }
+    body.dashboard-layout .dashboard.technician-dashboard > .sidebar { position: static; width: 100%; height: auto; min-height: auto; padding: 14px; }
+    body.dashboard-layout .dashboard.technician-dashboard .logo { padding: 0 8px 10px; }
+    body.dashboard-layout .dashboard.technician-dashboard .menu { display: flex; gap: 5px; overflow-x: auto; }
+    body.dashboard-layout .dashboard.technician-dashboard .menu li { flex: 0 0 auto; }
+    body.dashboard-layout .dashboard.technician-dashboard > .main-content { margin-left: 0; padding: 24px 16px; }
+}
+
+@media (max-width: 600px) {
+    body.dashboard-layout .dashboard.technician-dashboard .cards-row { grid-template-columns: 1fr; }
+    body.dashboard-layout .dashboard.technician-dashboard .panel-content,
+    body.dashboard-layout .dashboard.technician-dashboard .section.panel { overflow-x: auto; }
+    body.dashboard-layout .dashboard.technician-dashboard table { min-width: 620px; }
+}
+
+/* Report Issue form shared by Admin, Student/Staff, and Laboratory Technician dashboards. */
+body.dashboard-layout .admin-report-form .report-form-group { margin-bottom: 15px; }
+body.dashboard-layout .admin-report-form label { display: block; margin-bottom: 6px; color: #0f172a; font-size: 14px; font-weight: 600; }
+body.dashboard-layout .admin-report-form input,
+body.dashboard-layout .admin-report-form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    color: #0f172a;
+    font: inherit;
+    transition: all .3s ease;
+}
+body.dashboard-layout .admin-report-form textarea { resize: vertical; }
+body.dashboard-layout .admin-report-form input:focus,
+body.dashboard-layout .admin-report-form textarea:focus { outline: none; border-color: #2563eb; box-shadow: 0 0 0 3px rgba(37, 99, 235, .1); }
+body.dashboard-layout .admin-report-form .btn-report { background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%); box-shadow: 0 4px 12px rgba(22, 163, 74, .2); }
+body.dashboard-layout .admin-report-form .btn-report:hover { box-shadow: 0 6px 16px rgba(22, 163, 74, .3); }
+body.dashboard-layout .admin-report-form .btn-report:disabled { cursor: not-allowed; opacity: .55; box-shadow: none; }
+
+body {
+    background: #f4f6f9;
+    color: var(--dashboard-navy-dark);
+}
+
+.dashboard {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 220px;
+    flex: 0 0 220px;
+    background: var(--dashboard-navy);
+    color: #fff;
+    padding: 12px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 18px;
+}
+
+.logo i { color: #38bdf8; font-size: 22px; }
+.logo h2 { font-size: 18px; }
+
+.menu, .sidebar ul { list-style: none; }
+
+.menu li, .sidebar ul li {
+    margin-bottom: 5px;
+    border-radius: 6px;
+    transition: background .2s ease;
+}
+
+.menu li:hover, .menu li.active,
+.sidebar ul li:hover, .sidebar ul li.active {
+    background: #334155;
+    transform: none;
+    border-left-color: transparent;
+}
+
+.menu a, .sidebar ul li a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 10px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.menu a i, .sidebar ul li a i { font-size: 15px; }
+
+.main-content {
+    flex: 1;
+    min-width: 0;
+    padding: 30px;
+}
+
+/* Keep dashboard content centered inside the workspace, never the sidebar. */
+.main-content > * {
+    width: min(1100px, 100%);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.main-content > .topbar {
+    justify-content: center;
+}
+
+/* Keep navigation visible while content changes in the workspace. */
+@media (min-width: 901px) {
+    .dashboard > .sidebar {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        overflow-y: auto;
+    }
+}
+
+.top-title h1, .topbar h1 { font-size: 30px; color: var(--dashboard-navy-dark); }
+.top-title p, .topbar p { color: var(--dashboard-muted); }
+
+.cards-row, .cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin: 24px 0 30px;
+}
+
+.card {
+    flex: 1 1 220px;
+    min-width: 220px;
+    background: var(--dashboard-surface);
+    border: 1px solid var(--dashboard-border);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 3px 10px rgba(15, 23, 42, .06);
+}
+
+.card:hover { transform: translateY(-3px); }
+.card h2 { color: var(--dashboard-navy-dark); }
+.card p { color: var(--dashboard-muted); }
+
+.panel, .section-block, .lab-detail-content {
+    background: var(--dashboard-surface);
+    border: 1px solid var(--dashboard-border);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 3px 10px rgba(15, 23, 42, .05);
+}
+
+/* A selected view is the only item displayed in the main workspace. */
+.main-content.has-selected-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main-content.has-selected-panel > * {
+    display: none;
+}
+
+.main-content.has-selected-panel > .panel-content,
+.main-content.has-selected-panel > .panel-section.active,
+.main-content.has-selected-panel > .section.panel.is-selected {
+    display: block;
+}
+
+.main-content.has-selected-panel > .panel-section.active,
+.main-content.has-selected-panel > .section.panel.is-selected,
+.main-content.has-selected-panel > .panel-content {
+    width: min(1100px, 100%);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.main-content.has-selected-panel > .panel-content > .panel-section.active {
+    display: block;
+}
+
+/* Preserve card grids inside a selected panel. */
+.main-content.has-selected-panel .panel-section .cards-row,
+.main-content.has-selected-panel .section.panel.is-selected .cards-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+/* Keep every dashboard table within the dimensions of its containing panel. */
+body.dashboard-layout table {
+    width: 100%;
+    max-width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    margin-top: 16px;
+}
+body.dashboard-layout table th,
+body.dashboard-layout table td {
+    min-width: 0;
+    overflow-wrap: anywhere;
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--dashboard-border);
+    text-align: left;
+}
+body.dashboard-layout table th { background: var(--dashboard-navy); color: #fff; font-weight: 600; }
+body.dashboard-layout table tbody tr:hover { background: #f8fafc; }
+
+/* Laboratory tables fill their content panel instead of sitting on an inset background. */
+body.dashboard-layout .lab-detail-content {
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+}
+body.dashboard-layout .lab-detail-content .section-block {
+    margin-top: 0;
+    padding: 0;
+    overflow: hidden;
+}
+body.dashboard-layout .lab-detail-content .section-block h4 {
+    margin: 0;
+    padding: 20px 20px 16px;
+}
+body.dashboard-layout .lab-detail-content .section-block table {
+    width: 100%;
+    margin-top: 0;
+}
+
+/* Extend laboratory table sections to the full width of their large lab card. */
+body.admin-dashboard .lab-detail-card { --laboratory-card-padding: 30px; }
+body.technician-dashboard-page .lab-detail-card { --laboratory-card-padding: 20px; }
+body.student-dashboard .lab-detail-card { --laboratory-card-padding: 24px; }
+
+body.dashboard-layout .lab-detail-card {
+    overflow: hidden;
+}
+body.dashboard-layout .lab-detail-card > .lab-detail-content {
+    width: calc(100% + var(--laboratory-card-padding) + var(--laboratory-card-padding));
+    margin-right: calc(-1 * var(--laboratory-card-padding));
+    margin-bottom: calc(-1 * var(--laboratory-card-padding));
+    margin-left: calc(-1 * var(--laboratory-card-padding));
+}
+body.dashboard-layout .lab-detail-card > .lab-detail-content .section-block {
+    border-radius: 0;
+}
+body.dashboard-layout .lab-detail-card > .lab-detail-content .section-block tbody {
+    background: #fff;
+}
+
+.btn, button:not(.logout-btn) {
+    border: 0;
+    border-radius: 8px;
+    padding: 10px 14px;
+    background: var(--dashboard-blue);
+    color: #fff;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.btn:hover, button:not(.logout-btn):hover { opacity: .9; transform: none; }
+
+input, select, textarea {
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 11px;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 6px 10px;
+    border-radius: 999px;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+@media (max-width: 900px) {
+    .dashboard { flex-direction: column; }
+    .sidebar { width: 100%; flex-basis: auto; }
+    .main-content { padding: 20px; }
+}
+
+/* Shared dashboard shell and account menu. */
+body.dashboard-layout > .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    display: flex;
+    min-height: 70px;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 250px;
+    padding: 13px clamp(20px, 4vw, 56px);
+    border-bottom: 1px solid #e2e8f0;
+    background: rgba(255, 255, 255, .96);
+    box-shadow: 0 2px 14px rgba(15, 23, 42, .05);
+    backdrop-filter: blur(12px);
+}
+
+body.dashboard-layout > .topbar .page-title h1 {
+    margin: 0;
+    color: #0f172a;
+    font-size: clamp(18px, 2vw, 23px);
+    letter-spacing: -.03em;
+}
+
+body.dashboard-layout .dashboard > .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 30;
+    width: 250px;
+    height: 100vh;
+    padding: 24px 14px;
+    overflow-y: auto;
+    background: linear-gradient(180deg, #0f172a 0%, #172554 100%);
+}
+
+body.dashboard-layout .dashboard > .main-content {
+    margin-left: 250px;
+}
+
+body.dashboard-layout .panel-section,
+body.dashboard-layout .section.panel,
+body.dashboard-layout .lab-devices,
+body.dashboard-layout .lab-section {
+    scroll-margin-top: 92px;
+}
+
+body.dashboard-layout .embedded-page-panel { display: none; }
+
+body.dashboard-layout .main-content.has-embedded-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+body.dashboard-layout .main-content.has-embedded-page > * { display: none; }
+body.dashboard-layout .main-content.has-embedded-page > .embedded-page-panel {
+    display: block;
+    width: min(1180px, 100%);
+}
+
+body.dashboard-layout .embedded-page-panel {
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    background: #fff;
+    box-shadow: 0 12px 30px rgba(15, 23, 42, .09);
+    scroll-margin-top: 92px;
+}
+
+body.dashboard-layout .embedded-page-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 16px 20px;
+    border-bottom: 1px solid #e2e8f0;
+    background: #f8fafc;
+}
+
+body.dashboard-layout .workspace-eyebrow { margin: 0 0 3px; color: #64748b; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; }
+body.dashboard-layout .embedded-page-toolbar h2 { margin: 0; color: #0f172a; font-size: 19px; }
+body.dashboard-layout .workspace-close { display: inline-flex; align-items: center; gap: 8px; padding: 9px 12px; border: 0; border-radius: 9px; background: #1d4ed8; color: #fff; font: inherit; font-size: 13px; font-weight: 700; cursor: pointer; }
+body.dashboard-layout .embedded-page-frame { display: block; width: 100%; min-height: 720px; border: 0; background: #fff; }
+
+@media (max-width: 600px) {
+    body.dashboard-layout .embedded-page-toolbar { align-items: flex-start; flex-direction: column; }
+    body.dashboard-layout .embedded-page-frame { min-height: 640px; }
+}
+
+body.dashboard-layout .dashboard-heading {
+    width: min(1180px, 100%);
+    margin: 0 auto 28px;
+}
+
+body.dashboard-layout .dashboard-heading h1 {
+    margin: 0;
+    color: #0f172a;
+    font-size: clamp(27px, 3vw, 36px);
+    letter-spacing: -.045em;
+}
+
+body.dashboard-layout .dashboard-heading p {
+    max-width: 620px;
+    margin: 8px 0 0;
+    color: #64748b;
+    line-height: 1.55;
+}
+
+body.dashboard-layout .profile-dropdown { position: relative; }
+
+body.dashboard-layout .profile-dropdown .profile-button {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 5px 8px 5px 5px;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    background: #fff;
+    color: #0f172a;
+    cursor: pointer;
+    text-align: left;
+}
+
+body.dashboard-layout .profile-dropdown .profile-button:hover {
+    border-color: #bfdbfe;
+    background: #f8fafc;
+    transform: none;
+}
+
+/* The administrator account control should not show a dark/red-looking outline. */
+body.admin-dashboard.dashboard-layout .profile-dropdown .profile-button {
+    border-color: transparent;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, .06);
+}
+
+body.admin-dashboard.dashboard-layout .profile-dropdown .profile-button:hover {
+    border-color: transparent;
+    background: #f8fafc;
+}
+
+body.admin-dashboard.dashboard-layout .profile-menu {
+    padding: 0;
+    border-color: transparent;
+    background: transparent;
+    box-shadow: none;
+}
+
+body.admin-dashboard.dashboard-layout .profile-menu .menu-header,
+body.admin-dashboard.dashboard-layout .profile-menu .menu-divider { display: none; }
+
+body.admin-dashboard.dashboard-layout .profile-menu a,
+body.admin-dashboard.dashboard-layout .profile-menu form button {
+    padding: 8px 0;
+    background: transparent;
+}
+
+body.admin-dashboard.dashboard-layout .profile-menu a:hover,
+body.admin-dashboard.dashboard-layout .profile-menu form button:hover { background: transparent; }
+
+/* Keep the account menu card; only its unwanted outline is removed. */
+body.admin-dashboard.dashboard-layout .profile-menu {
+    padding: 8px;
+    border-color: #e2e8f0;
+    background: #fff;
+    box-shadow: 0 18px 38px rgba(15, 23, 42, .16);
+}
+
+body.admin-dashboard.dashboard-layout .profile-menu .menu-header { display: flex; }
+body.admin-dashboard.dashboard-layout .profile-menu .menu-divider { display: block; }
+body.admin-dashboard.dashboard-layout .profile-menu a,
+body.admin-dashboard.dashboard-layout .profile-menu form button {
+    padding: 10px;
+    border: 0;
+    outline: 0;
+    box-shadow: none;
+}
+body.admin-dashboard.dashboard-layout .profile-menu a:hover,
+body.admin-dashboard.dashboard-layout .profile-menu form button:hover { background: #f1f5f9; }
+body.admin-dashboard.dashboard-layout .profile-menu a:focus,
+body.admin-dashboard.dashboard-layout .profile-menu form button:focus { outline: 0; box-shadow: none; }
+
+body.dashboard-layout .profile-avatar,
+body.dashboard-layout .profile-photo {
+    display: grid;
+    width: 36px;
+    height: 36px;
+    flex: 0 0 36px;
+    place-items: center;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+body.dashboard-layout .profile-avatar.initials,
+body.dashboard-layout .profile-photo.initials {
+    background: #dbeafe;
+    color: #1d4ed8;
+    font-size: 13px;
+    font-weight: 800;
+}
+
+body.dashboard-layout .profile-button-details,
+body.dashboard-layout .profile-details { display: grid; gap: 2px; text-align: left; }
+body.dashboard-layout .profile-name { font-size: 13px; font-weight: 700; }
+body.dashboard-layout .profile-short,
+body.dashboard-layout .profile-role { color: #64748b; font-size: 11px; }
+body.dashboard-layout .profile-arrow { color: #64748b; font-size: 11px; }
+
+body.dashboard-layout .profile-menu {
+    position: absolute;
+    top: calc(100% + 9px);
+    right: 0;
+    display: none;
+    width: min(280px, calc(100vw - 32px));
+    padding: 8px;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    background: #fff;
+    box-shadow: 0 18px 38px rgba(15, 23, 42, .16);
+}
+
+body.dashboard-layout .profile-menu.show { display: block; }
+
+body.dashboard-layout .profile-menu .menu-header {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    padding: 6px;
+}
+
+body.dashboard-layout .profile-menu .menu-photo {
+    width: 36px;
+    height: 36px;
+    flex: 0 0 36px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+body.dashboard-layout .profile-menu .menu-photo.initials {
+    display: grid;
+    place-items: center;
+    background: #dbeafe;
+    color: #1d4ed8;
+    font-size: 13px;
+    font-weight: 800;
+}
+
+body.dashboard-layout .profile-menu .menu-header h4 {
+    margin: 0;
+    color: #0f172a;
+    font-size: 14px;
+}
+
+body.dashboard-layout .profile-menu .menu-header p {
+    margin: 3px 0 0;
+    color: #64748b;
+    font-size: 12px;
+    overflow-wrap: anywhere;
+}
+
+body.dashboard-layout .profile-menu .menu-divider {
+    height: 1px;
+    margin: 9px 0;
+    background: #e2e8f0;
+}
+
+body.dashboard-layout .profile-menu a,
+body.dashboard-layout .profile-menu form button {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    gap: 9px;
+    padding: 10px;
+    border: 0;
+    border-radius: 8px;
+    background: transparent;
+    color: #334155;
+    font: inherit;
+    font-size: 13px;
+    text-align: left;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+body.dashboard-layout .profile-menu a:hover,
+body.dashboard-layout .profile-menu form button:hover {
+    background: #f1f5f9;
+    color: #1d4ed8;
+    transform: none;
+    box-shadow: none;
+}
+
+@media (max-width: 900px) {
+    body.dashboard-layout > .topbar { margin-left: 0; }
+    body.dashboard-layout .dashboard > .sidebar {
+        position: static;
+        width: 100%;
+        height: auto;
+        min-height: auto;
+        padding: 14px;
+    }
+    body.dashboard-layout .dashboard > .main-content { margin-left: 0; }
+}
+
+@media (max-width: 600px) {
+    body.dashboard-layout > .topbar { min-height: 62px; padding: 10px 16px; }
+    body.dashboard-layout > .topbar .page-title h1 { font-size: 16px; }
+    body.dashboard-layout .profile-button-details,
+    body.dashboard-layout .profile-details,
+    body.dashboard-layout .profile-arrow { display: none; }
+}

@@ -1,0 +1,90 @@
+﻿* { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, Helvetica, sans-serif; }
+        body { 
+                background: #f8fafc; color: #0f172a; }
+
+        .dashboard 
+        { display: flex; min-height: 100vh; }
+
+        .sidebar 
+        { width: 260px; background: #0f172a; color: white; padding: 94px; }
+        .logo
+         { display: flex; align-items: center; gap: 10px; margin-bottom: 30px; }
+        .logo 
+        i { font-size: 28px; color: #38bdf8; }
+        .logo h2 
+        { font-size: 22px; letter-spacing: 0.8px; }
+        .menu
+         { list-style: none; }
+        .menu li 
+        { margin-bottom: 10px; border-radius: 10px; transition: 0.3s; }
+        .menu li.active, .menu li:hover 
+        { background: #1e293b; }
+        .menu a 
+        { display: flex; align-items: center; gap: 10px; padding: 14px 18px; color: white; text-decoration: none; font-size: 15px; }
+        .main-content
+         { flex: 1; padding: 32px; }
+        .top-title-row
+         { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; }
+        .topbar-right
+         { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
+        .profile-box 
+        { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 12px; background: white; box-shadow: 0 6px 18px rgba(15,23,42,0.08); }
+        .profile-avatar 
+        { width: 42px; height: 42px; border-radius: 50%; background: #2563eb; color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; }
+        .profile-name
+         { font-size: 14px; color: #0f172a; font-weight: 700; line-height: 1.1; }
+        .profile-short 
+        { font-size: 12px; color: #475569; }
+        .profile-link 
+        { text-decoration: none; color: inherit; display: inline-block; }
+        .profile-link:hover .profile-box 
+        { transform: translateY(-2px); }
+        .top-title h1
+         { font-size: 32px; margin-bottom: 10px; }
+        .top-title p 
+        { color: #64748b; margin-bottom: 24px; }
+        .logout-btn 
+        { display: inline-flex; align-items: center; gap: 8px; padding: 10px 14px; border-radius: 10px; background: #edeaea; color: white; border: none; cursor: pointer; text-decoration: none; font-size: 14px; }
+        .logout-btn:hover { opacity: 0.9; }
+        .profile-dropdown { position: relative; }
+        .profile-dropdown .profile-button { display:flex; align-items:center; gap:10px; padding:5px 8px 5px 5px; border:1px solid #e2e8f0; border-radius:12px; background:#fff; color:#0f172a; cursor:pointer; text-align:left; }
+        .profile-dropdown .profile-button:hover { background:#f8fafc; border-color:#bfdbfe; transform:none; }
+        .profile-button-details { display:grid; gap:2px; }
+        .profile-arrow { color:#64748b; font-size:11px; }
+        .profile-menu { position:absolute; top:calc(100% + 8px); right:0; display:none; width:210px; padding:8px; border:1px solid #e2e8f0; border-radius:12px; background:#fff; box-shadow:0 16px 32px rgba(15,23,42,.15); z-index:10; }
+        .profile-menu.show { display:block; }
+        .profile-menu a, .profile-menu form button { display:flex; width:100%; align-items:center; gap:9px; padding:10px; border:0; border-radius:8px; background:transparent; color:#334155; font:inherit; font-size:13px; text-align:left; text-decoration:none; cursor:pointer; }
+        .profile-menu a:hover, .profile-menu form button:hover { background:#f1f5f9; color:#1d4ed8; transform:none; box-shadow:none; }
+        .cards-row { display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 30px; }
+        .card { flex: 1; min-width: 220px; background: white; border-radius: 18px; padding: 24px; box-shadow: 0 14px 30px rgba(15,23,42,0.06); display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: transform 0.3s; }
+        .card:hover { transform: translateY(-4px); }
+        .card h2 { font-size: 32px; margin-bottom: 4px; }
+        .card p { color: #64748b; }
+        .card .icon { width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 24px; }
+        .labs .icon { background: #2563eb; }
+        .devices .icon { background: #16a34a; }
+        .reports .icon { background: #ea580c; }
+        .section { margin-bottom: 30px; }
+        .section h2 { margin-bottom: 18px; font-size: 24px; }
+        .panel { background: white; border-radius: 18px; padding: 24px; box-shadow: 0 14px 30px rgba(15,23,42,0.06); }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 16px; }
+        table th, table td { border: 1px solid #e2e8f0; padding: 12px 14px; text-align: left; }
+        table th { background: #f8fafc; }
+        .lab-card{ background:#f8fafc; border:1px solid #e2e8f0; padding:20px; border-radius:12px; margin-bottom:20px; cursor:pointer; transition:0.3s; }
+        .lab-card:hover, .lab-card.active{ border-color:#2563eb; background:#eff6ff; }
+        .lab-card h3{ margin-bottom:10px; color:#0f172a; }
+        .lab-card p{ margin-bottom:10px; color:#475569; }
+        .lab-devices{ display:none; margin-top:20px; }
+        .lab-detail-card{ background:#f8fafc; border:1px solid #e2e8f0; border-radius:16px; padding:24px; }
+        .lab-detail-content{ background:#fff; border-radius:16px; padding:20px; box-shadow:0 8px 20px rgba(15,23,42,0.06); }
+        .lab-section{ display:none; }
+        .section-block{ margin-top:10px; }
+        .btn { display: inline-block; padding: 10px 18px; border-radius: 10px; background: #2563eb; color: white; text-decoration: none; transition: opacity 0.2s; }
+        .btn:hover { opacity: 0.9; }
+        .form-row { display: grid; gap: 16px; }
+        .form-row input, .form-row select, .form-row textarea { width: 100%; border: 1px solid #cbd5e1; border-radius: 12px; padding: 14px; font-size: 15px; color: #0f172a; }
+        .form-row label { color: #334155; font-size: 14px; font-weight: 600; }
+        .success { margin-bottom: 18px; color: #14532d; background: #dcfce7; border: 1px solid #bbf7d0; padding: 14px 16px; border-radius: 12px; }
+        .status-badge{ display:inline-block; padding:6px 10px; border-radius:999px; font-size:13px; color:#fff; }
+        @media (max-width: 900px) { .dashboard { flex-direction: column; } .sidebar { width: 100%; } }

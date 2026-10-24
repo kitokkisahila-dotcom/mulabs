@@ -1,0 +1,233 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #f1f5f9;
+    color: #172033;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* Global account header */
+body > .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 70px;
+    padding: 13px clamp(20px, 4vw, 56px);
+    background: rgba(255, 255, 255, 0.96);
+    border-bottom: 1px solid #e2e8f0;
+    box-shadow: 0 2px 14px rgba(15, 23, 42, 0.05);
+    backdrop-filter: blur(12px);
+    margin-left: 250px;
+}
+
+body > .topbar .page-title h1 {
+    margin: 0;
+    font-size: clamp(18px, 2vw, 23px);
+    letter-spacing: -0.03em;
+    color: #0f172a;
+}
+
+.profile-dropdown { position: relative; }
+
+.profile-button {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 5px 8px 5px 5px;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    background: #fff;
+    color: #172033;
+    cursor: pointer;
+}
+
+.profile-button:hover { border-color: #bfdbfe; background: #f8fafc; }
+
+.profile-photo, .menu-photo {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.profile-photo.initials, .menu-photo.initials {
+    display: grid;
+    place-items: center;
+    background: #dbeafe;
+    color: #1d4ed8;
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.profile-details { display: grid; text-align: left; }
+.profile-name { font-size: 13px; font-weight: 700; }
+.profile-role { color: #64748b; font-size: 11px; }
+.profile-arrow { color: #64748b; font-size: 11px; }
+
+.profile-menu {
+    position: absolute;
+    top: calc(100% + 9px);
+    right: 0;
+    display: none;
+    width: min(280px, calc(100vw - 32px));
+    padding: 10px;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    background: #fff;
+    box-shadow: 0 18px 38px rgba(15, 23, 42, 0.16);
+}
+
+.profile-menu.show { display: block; }
+.menu-header { display: flex; align-items: center; gap: 11px; padding: 6px; }
+.menu-header h4 { margin: 0; font-size: 14px; }
+.menu-header p { margin: 3px 0 0; color: #64748b; font-size: 12px; overflow-wrap: anywhere; }
+.menu-divider { height: 1px; margin: 9px 0; background: #e2e8f0; }
+.profile-menu a, .profile-menu form button {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    gap: 9px;
+    padding: 10px;
+    border: 0;
+    border-radius: 8px;
+    background: transparent;
+    color: #334155;
+    font: inherit;
+    font-size: 13px;
+    text-align: left;
+    text-decoration: none;
+    cursor: pointer;
+}
+.profile-menu a:hover, .profile-menu form button:hover { background: #f1f5f9; color: #1d4ed8; }
+
+/* Dashboard workspace */
+.technician-dashboard {
+    display: flex;
+    min-height: calc(100vh - 70px);
+}
+
+.technician-dashboard .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 30;
+    width: 250px;
+    flex: 0 0 250px;
+    height: 100vh;
+    padding: 24px 14px;
+    background: linear-gradient(180deg, #0f172a 0%, #172554 100%);
+    color: #fff;
+}
+
+.technician-dashboard .logo { display: flex; align-items: center; gap: 10px; padding: 0 10px 20px; }
+.technician-dashboard .logo i { color: #38bdf8; font-size: 22px; }
+.technician-dashboard .logo h2 { margin: 0; font-size: 17px; letter-spacing: -0.02em; }
+.technician-dashboard .menu { margin: 0; padding: 0; list-style: none; }
+.technician-dashboard .menu li { margin: 4px 0; border-radius: 10px; }
+.technician-dashboard .menu a { display: flex; align-items: center; gap: 11px; padding: 11px 12px; color: #cbd5e1; font-size: 14px; text-decoration: none; }
+.technician-dashboard .menu li:hover, .technician-dashboard .menu li.active { background: rgba(255,255,255,.12); }
+.technician-dashboard .menu li.active a { color: #fff; font-weight: 700; }
+
+.technician-dashboard .main-content {
+    flex: 1;
+    min-width: 0;
+    margin-left: 250px;
+    padding: clamp(24px, 4vw, 48px);
+    background: #f1f5f9;
+}
+
+.technician-dashboard .main-content > * { width: min(1180px, 100%); margin-right: auto; margin-left: auto; }
+.dashboard-heading { margin-bottom: 28px; }
+.dashboard-heading h1 { margin: 0; color: #0f172a; font-size: clamp(27px, 3vw, 36px); letter-spacing: -0.045em; }
+.dashboard-heading p { max-width: 620px; margin: 8px 0 0; color: #64748b; line-height: 1.55; }
+
+.technician-dashboard .cards-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 18px; margin: 0 0 28px; }
+.technician-dashboard .card {
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    background: #fff;
+    box-shadow: 0 5px 18px rgba(15, 23, 42, 0.05);
+    cursor: pointer;
+    transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.technician-dashboard .card:hover { transform: translateY(-3px); border-color: #bfdbfe; box-shadow: 0 12px 25px rgba(15, 23, 42, .09); }
+.technician-dashboard .card h2 { margin: 0 0 5px; color: #0f172a; font-size: 29px; }
+.technician-dashboard .card h3 { margin: 0 0 8px; color: #0f172a; font-size: 17px; }
+.technician-dashboard .card p { margin: 0; color: #64748b; font-size: 13px; line-height: 1.65; }
+.technician-dashboard .card .icon { display: grid; width: 48px; height: 48px; flex: 0 0 48px; place-items: center; border-radius: 13px; color: #fff; font-size: 20px; }
+.technician-dashboard .labs .icon { background: #2563eb; }
+.technician-dashboard .devices .icon { background: #059669; }
+.technician-dashboard .reports .icon { background: #ea580c; }
+.technician-dashboard .generate .icon, .technician-dashboard .report-form .icon { background: #7c3aed; }
+.technician-dashboard .lab-card { align-items: flex-start; background: #fff; }
+.technician-dashboard .lab-card.active { border-color: #2563eb; background: #eff6ff; }
+
+.technician-dashboard .panel-content, .technician-dashboard .lab-detail-card, .technician-dashboard .section-block, .technician-dashboard .lab-detail-content {
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    background: #fff;
+    box-shadow: 0 5px 18px rgba(15, 23, 42, 0.05);
+}
+.technician-dashboard .panel-content { padding: clamp(18px, 3vw, 28px); }
+.technician-dashboard .panel-section { display: none; }
+.technician-dashboard .panel-section.active { display: block; }
+.technician-dashboard .panel-section > h2 { margin: 0 0 8px; font-size: 22px; }
+.technician-dashboard .lab-detail-card { padding: 20px; background: #f8fafc; }
+.technician-dashboard .lab-detail-card > h3 { margin: 0 0 18px; }
+.technician-dashboard .lab-detail-content, .technician-dashboard .section-block { padding: 20px; }
+.technician-dashboard .section-block h4 { margin: 0 0 16px; font-size: 17px; }
+
+.technician-dashboard table { width: 100%; margin-top: 16px; border-collapse: collapse; font-size: 14px; }
+.technician-dashboard th, .technician-dashboard td { padding: 13px 14px; border-bottom: 1px solid #e2e8f0; text-align: left; vertical-align: middle; }
+.technician-dashboard th { background: #f8fafc; color: #475569; font-size: 12px; font-weight: 800; letter-spacing: .03em; text-transform: uppercase; }
+.technician-dashboard tbody tr:hover { background: #f8fafc; }
+.technician-dashboard .status-badge { display: inline-block; padding: 5px 9px; border-radius: 999px; color: #fff; font-size: 12px; font-weight: 700; }
+
+.technician-dashboard input, .technician-dashboard textarea { max-width: 100%; font: inherit; }
+.technician-dashboard .btn, .technician-dashboard .action-btn, .technician-dashboard td a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 11px;
+    border: 0;
+    border-radius: 8px;
+    background: #2563eb;
+    color: #fff;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+}
+.technician-dashboard .btn-report, .technician-dashboard .resolve { background: #059669; }
+.technician-dashboard .not-resolve { background: #dc2626; }
+
+@media (max-width: 900px) {
+    body > .topbar { margin-left: 0; }
+    .technician-dashboard { flex-direction: column; }
+    .technician-dashboard .sidebar { position: static; width: 100%; height: auto; min-height: auto; padding: 14px; }
+    .technician-dashboard .logo { padding: 0 8px 10px; }
+    .technician-dashboard .menu { display: flex; gap: 5px; overflow-x: auto; }
+    .technician-dashboard .menu li { flex: 0 0 auto; }
+    .technician-dashboard .main-content { margin-left: 0; padding: 24px 16px; }
+}
+
+@media (max-width: 600px) {
+    body > .topbar { min-height: 62px; padding: 10px 16px; }
+    .page-title h1 { font-size: 16px; }
+    .profile-details, .profile-arrow { display: none; }
+    .technician-dashboard .cards-row { grid-template-columns: 1fr; }
+    .technician-dashboard .panel-content { overflow-x: auto; }
+    .technician-dashboard table { min-width: 620px; }
+}
