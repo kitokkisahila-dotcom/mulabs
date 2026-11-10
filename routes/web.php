@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FacultyController;
-use App\Http\controllers\laboratoryController;
+use App\Http\Controllers\LaboratoryController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\ProgrameController;
 use App\Http\Controllers\DeviceController;
@@ -28,26 +28,26 @@ Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 //faculty registration route
-Route::post('/faculty',[FacultyController::class,'Faculty'])->name('facultyreg');   
+Route::post('/faculty',[FacultyController::class,'Faculty'])->name('faculty.store');   
 Route::get('/faculty',[FacultyController::class,'facultyview'])->name('facultyreg');
 //department registration route
-Route::post('/department',[DepartmentController::class,'department'])->name('departmentreg');   
+Route::post('/department',[DepartmentController::class,'department'])->name('department.store');   
 Route::get('/department',[DepartmentController::class,'departmentview'])->name('departmentreg');
 //program registration route
-Route::post('/program',[ProgrameController::class,'program'])->name('programreg');   
+Route::post('/program',[ProgrameController::class,'program'])->name('program.store');   
 Route::get('/program',[ProgrameController::class,'programview'])->name('programreg');
 //device registration route
-Route::post('/device',[DeviceController::class,'Device'])->name('devicereg');   
+Route::post('/device',[DeviceController::class,'Device'])->name('device.store');   
 Route::get('/device',[DeviceController::class,'deviceview'])->name('devicereg');
 Route::get('/devices/statuses', [DeviceController::class, 'statuses'])->name('devices.statuses');
 //laboratory registration route
-Route::post('/laboratory',[LaboratoryController::class,'Laboratory'])->name('laboratoryreg');   
+Route::post('/laboratory',[LaboratoryController::class,'Laboratory'])->name('laboratory.store');   
 Route::get('/laboratory',[LaboratoryController::class,'laboratoryview'])->name('laboratoryreg');
 //user registration route
 Route::post('/user',[UserController::class,'user'])->name('userreg');   
 Route::get('/user',[UserController::class,'userview'])->name('user');
 //report registration route
-Route::post('/report',[ReportController::class,'report'])->name('reportreg');   
+Route::post('/report',[ReportController::class,'report'])->name('report.store');   
 Route::get('/report',[ReportController::class,'reportview'])->name('reportreg');
 //student and staff dashboard route
 Route::get('/student',[StudentStaffController::class,'dashboard'])->name('studentdashboard');
