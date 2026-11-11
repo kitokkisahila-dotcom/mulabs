@@ -14,11 +14,9 @@ use App\Http\Controllers\StudentStaffController;
 use App\Http\Controllers\LabtechnicianController;
 use App\Http\Controllers\ProfileController;
 Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/mulabs', function () {
     return view('home');
 })->name('home');
+Route::redirect('/mulabs', '/');
 
 //laboratory technician registration
 Route::get('/technician/register',[UserController::class, 'technicianView'])->name('technician.form');
