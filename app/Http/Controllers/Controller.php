@@ -1,17 +1,17 @@
+
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 abstract class Controller
 {
-    public function checklogin(){
-        if(!Auth::check()){
-
-        
-            return redirect()->route('home')->send();
-            exit;
+    public function checklogin()
+    {
+        if (!Auth::check()) {
+            return redirect()->route('home');
         }
     }
 
@@ -27,6 +27,5 @@ abstract class Controller
 
         return redirect()->back()->with('success', $message);
     }
-
-
 }
+
