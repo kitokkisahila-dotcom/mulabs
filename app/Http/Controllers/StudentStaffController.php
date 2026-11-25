@@ -9,8 +9,13 @@ use App\Models\Report;
 class StudentStaffController extends Controller
 {
     public function dashboard()
-    {       
-        $this->checklogin();
+    {
+        // Do not continue into dashboard queries when the session is unauthenticated.
+        // In particular, Auth::user() below would be null and cause a 500 error.
+        if (!Auth::check()) {
+            return redirect()->route('login');
+        }
+
         $labs = Laboratory::with('device')->orderBy('block_name')->get();
         $computerLabs = Laboratory::where('block_name', 'like', '%computer%')
             ->orWhere('block_name', 'like', '%Computer%')
@@ -36,7 +41,7 @@ class StudentStaffController extends Controller
              ->header('Cache-Control', 'no-cache, no-store, must-revalidate')
              ->header('Pragma', 'no-cache')
              ->header('Expires', '0');
-        
+
     }
     public function storeReport(Request $request)
     {
